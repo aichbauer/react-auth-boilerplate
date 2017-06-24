@@ -1,0 +1,18 @@
+{
+    "extends": "airbnb",
+    "plugins": [
+        "react",
+        "jsx-a11y",
+        "import"
+    ],
+    "rules": {
+        "arrow-parens": 0,
+        "react/jsx-filename-extension": 0
+    },
+    "globals": {
+        "localStorage": true,
+        "window": true,
+        "document": true,
+        "FormData": true
+    }
+}
