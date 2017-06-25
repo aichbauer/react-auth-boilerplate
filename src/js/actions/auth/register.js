@@ -45,7 +45,7 @@ export const register = (creds) => (
       password2: creds.password2,
     })
       .then((res) => {
-        dispatch(receiveRegister(res.data.user));
+        dispatch(receiveRegister(res.data));
         return hashHistory.push('/app');
       })
       .catch((error) => dispatch(errorRegister(error)))
