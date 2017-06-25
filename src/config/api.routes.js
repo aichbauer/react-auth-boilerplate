@@ -1,20 +1,33 @@
-const routes = () => {
-  switch (process.env.NODE_ENV) {
+const api = () => {
+  const env = process.env.NODE_ENV;
+  const url = {
+    prod: '',
+    dev: 'http://localhost:2017',
+    test: '',
+  };
+  let apiURL = '';
+
+  switch (env) {
     case 'production':
-      return {
-        BASE_API_URL: '',
-        REGISTER_ROUTE: '/rest/register',
-        LOGIN_ROUTE: '/rest/login',
-        VALIDATE_ROUTE: '/rest/validate',
-      };
+      apiURL = url.prod;
+      break;
+    case 'testing':
+      apiURL = url.test;
+      break;
     default:
-      return {
-        BASE_API_URL: 'http://localhost:2017',
-        REGISTER_ROUTE: '/rest/register',
-        LOGIN_ROUTE: '/rest/login',
-        VALIDATE_ROUTE: '/rest/validate',
-      };
+      apiURL = url.dev;
+      break;
   }
+
+  const routes = {
+    REGISTER: `${apiURL}/rest/register`,
+    LOGIN: `${apiURL}/rest/login`,
+    VALIDATE: `${apiURL}/rest/validate`,
+    GRAPHQL: `${apiURL}/graphql`,
+  };
+
+  return routes;
 };
 
-export default routes;
+export default api;
+

@@ -1,7 +1,7 @@
 import { hashHistory } from 'react-router';
 import axios from 'axios';
 
-import { BASE_API_URL, REGISTER_ROUTE } from '../../../config/api.routes';
+import api from '../../../config/api.routes';
 
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -36,7 +36,7 @@ const errorRegister = (error) => ({
 
 export const register = (creds) => (
   (dispatch) => (
-    axios.post(BASE_API_URL + REGISTER_ROUTE, {
+    axios.post(api().REGISTER, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },

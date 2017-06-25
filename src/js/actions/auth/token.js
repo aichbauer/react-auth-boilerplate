@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { hashHistory } from 'react-router';
 
-import { BASE_API_URL, VALIDATE_ROUTE } from '../../../config/api.routes';
+import api from '../../../config/api.routes';
 
 export const CHECK_TOKEN_SUCCESS = 'CHECK_TOKEN_SUCCESS';
 export const CHECK_TOKEN_FAILURE = 'CHECK_TOKEN_FAILURE';
@@ -22,7 +22,7 @@ const errorValidToken = (error) => ({
 
 export const isAuthorized = (token) => (
   (dispatch) => (
-    axios.post(BASE_API_URL + VALIDATE_ROUTE, {
+    axios.post(api().VALIDATE, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { hashHistory } from 'react-router';
 
-import { BASE_API_URL, LOGIN_ROUTE } from '../../../config/api.routes';
+import api from '../../../config/api.routes';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -33,7 +33,7 @@ const errorLogin = (error) => ({
 
 export const login = (creds) => (
   (dispatch) => (
-    axios.post(BASE_API_URL + LOGIN_ROUTE, {
+    axios.post(api().LOGIN, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
