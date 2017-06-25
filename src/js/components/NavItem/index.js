@@ -1,14 +1,12 @@
 import glamorous from 'glamorous';
 
-import css from '../../../config/css.variables';
-
 const NavItem = glamorous.div(
   {
     color: '#FFF',
     flex: '0 1 auto',
     padding: '15px',
     '& a': {
-      color: css.colors.MAIN1,
+      color: '#FFF',
       paddingTop: '2px',
       width: '100%',
       height: '100%',
