@@ -12,14 +12,16 @@ const requestLogin = () => ({ // eslint-disable-line no-unused-vars
   isFetching: true,
   isAuthenticated: false,
   token: '',
+  user: {},
   error: '',
 });
 
-const receiveLogin = (user) => ({
+const receiveLogin = (token, user) => ({
   type: LOGIN_SUCCESS,
   isFetching: false,
   isAuthenticated: true,
-  token: user.token,
+  token,
+  user,
   error: '',
 });
 
@@ -28,6 +30,7 @@ const errorLogin = (error) => ({
   isFetching: false,
   isAuthenticated: false,
   token: '',
+  user: {},
   error,
 });
 
@@ -41,9 +44,9 @@ export const login = (creds) => (
       password: creds.password,
     })
       .then((res) => {
-        dispatch(receiveLogin(res.data.usrr));
+        dispatch(receiveLogin(res.data.token, res.data.user));
         return hashHistory.push('/app');
       })
-      .catch((error) => dispatch(errorLogin(error)))
+      .catch((res) => dispatch(errorLogin(res.data.msg)))
   )
 );

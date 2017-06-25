@@ -16,11 +16,11 @@ const requestRegister = () => ({ // eslint-disable-line no-unused-vars
   error: '',
 });
 
-const receiveRegister = (user) => ({
+const receiveRegister = (token, user) => ({
   type: REGISTER_SUCCESS,
   isFetching: false,
   isAuthenticated: true,
-  token: user.token,
+  token,
   user,
   error: '',
 });
@@ -45,9 +45,9 @@ export const register = (creds) => (
       password2: creds.password2,
     })
       .then((res) => {
-        dispatch(receiveRegister(res.data));
+        dispatch(receiveRegister(res.data.token, res.data.user));
         return hashHistory.push('/app');
       })
-      .catch((error) => dispatch(errorRegister(error)))
+      .catch((res) => dispatch(errorRegister(res.data.msg)))
   )
 );
