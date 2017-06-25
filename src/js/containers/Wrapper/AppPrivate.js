@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { isAuthorized } from '../../actions/auth/token';
 
 class AppPrivate extends Component {
   componentDidMount() {
-    this.props.isAuthorized();
+    this.props.isAuthorized(this.props.token);
   }
 
   render() {
@@ -21,12 +23,14 @@ class AppPrivate extends Component {
 
 AppPrivate.defaultProps = {
   children: '',
+  token: '',
 };
 
 AppPrivate.propTypes = {
-  children: React.PropTypes.element,
-  isAuthorized: React.PropTypes.func.isRequired,
-  isAuthenticated: React.PropTypes.bool.isRequired,
+  children: PropTypes.element,
+  isAuthorized: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  token: PropTypes.string,
 };
 
 const matchDispatchToProps = (dispatch) => (bindActionCreators({
@@ -35,6 +39,7 @@ const matchDispatchToProps = (dispatch) => (bindActionCreators({
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  token: state.auth.token,
 });
 
 export default connect(mapStateToProps, matchDispatchToProps)(AppPrivate);
