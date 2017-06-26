@@ -35,8 +35,8 @@ export const isAuthorized = (token) => (
 
         return hashHistory.push('/');
       })
-      .catch((error) => {
-        dispatch(errorValidToken(error));
+      .catch((err) => {
+        dispatch(errorValidToken(err.respond.data.msg));
         return hashHistory.push('/');
       })
   )

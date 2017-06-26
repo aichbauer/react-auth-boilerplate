@@ -48,6 +48,6 @@ export const register = (creds) => (
         dispatch(receiveRegister(res.data.token, res.data.user));
         return hashHistory.push('/app');
       })
-      .catch((res) => dispatch(errorRegister(res.data.msg)))
+      .catch((err) => dispatch(errorRegister(err.respond.data.msg)))
   )
 );

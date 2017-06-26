@@ -47,6 +47,6 @@ export const login = (creds) => (
         dispatch(receiveLogin(res.data.token, res.data.user));
         return hashHistory.push('/app');
       })
-      .catch((res) => dispatch(errorLogin(res.data.msg)))
+      .catch((err) => dispatch(errorLogin(err.respond.data.msg)))
   )
 );
